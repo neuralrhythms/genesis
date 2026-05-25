@@ -8,7 +8,7 @@ Predict used car prices using multiple linear regression, implemented as a singl
 
 ## Mathematical Foundation
 
-This case study implements **multiple linear regression** — one of the most fundamental techniques in statistics and machine learning.
+This case study implements **multiple linear regression** — one of the oldest and most widely used techniques in statistics and machine learning. It was first described by [Legendre](https://en.wikipedia.org/wiki/Adrien-Marie_Legendre) and [Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) in the early 1800s, and remains the starting point for most predictive modelling today.
 
 ### The Model Equation
 
@@ -19,15 +19,31 @@ price = w₁ × age + w₂ × mileage + b
 The model learns three numbers:
 - **w₁** — how much each year of age reduces the price
 - **w₂** — how much each mile of driving reduces the price
-- **b** — the baseline price (intercept)
+- **b** — the baseline price when age and mileage are both zero (the intercept)
+
+This is a **linear combination** of input features plus a bias. Geometrically, the model fits a flat plane through 3D space (age × mileage → price). The training process tilts and shifts this plane until it best fits the data.
+
+### The Objective — Minimising Loss
+
+"Best fit" is defined mathematically as the set of weights that minimises the [Mean Squared Error (MSE)](https://en.wikipedia.org/wiki/Mean_squared_error):
+
+```
+MSE = (1/n) × Σ(predicted − actual)²
+```
+
+The squared term penalises large errors more than small ones, pushing the model to avoid big mistakes. The sum is averaged over all *n* training examples.
 
 ### Why "Linear" Regression?
 
-The output is a **linear function** of the inputs — a flat plane in 3D space (age × mileage → price). There are no curves, no powers, no interactions between features. Each feature contributes independently and proportionally to the predicted price.
+| Term | Meaning |
+|------|---------|
+| **Linear** | The output is a straight-line (or flat-plane) function of the inputs. There are no curves, no powers, no interactions between features. Each feature contributes independently and proportionally. |
+| **Multiple** | "Multiple" means more than one input feature. Simple linear regression uses one feature (`y = wx + b`); multiple linear regression uses two or more (`y = w₁x₁ + w₂x₂ + ... + b`). |
+| **Regression** | The model predicts a continuous number (price in dollars), not a category. Predicting "expensive vs cheap" would be classification; predicting "$34,500" is regression. |
 
-### Why Use a Neural Network for This?
+### Neural Network or Statistics?
 
-A single neuron with no activation function (`nn.Linear(2, 1)`) is **mathematically identical** to ordinary least squares (OLS) linear regression. The difference is in how we find the optimal weights:
+A single neuron with no activation function (`nn.Linear(2, 1)`) is **mathematically identical** to [ordinary least squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) linear regression. The difference is only in how we find the optimal weights:
 
 | Approach | Method | When to use |
 |----------|--------|-------------|
@@ -36,17 +52,17 @@ A single neuron with no activation function (`nn.Linear(2, 1)`) is **mathematica
 
 We use the neural network approach because:
 1. It teaches the **training loop** (`zero_grad → forward → loss → backward → step`) that is used for ALL neural networks — from this simple model to GPT-4.
-2. It scales. The normal equation becomes impractical with millions of features or data points. Gradient descent works regardless of scale.
+2. It **scales**. The normal equation becomes impractical with millions of features or data points. Gradient descent works regardless of scale.
 3. It introduces **normalisation**, **loss curves**, and **model persistence** — skills needed for every future model.
 
 ### Limitations of Linear Regression
 
 Linear regression assumes a straight-line relationship. It cannot capture:
-- Non-linear patterns (e.g. luxury brands holding value differently)
-- Feature interactions (e.g. low mileage matters more for newer cars)
-- Complex decision boundaries
+- **Non-linear patterns** — e.g. luxury brands holding value differently than economy brands
+- **Feature interactions** — e.g. low mileage matters more for newer cars than older ones
+- **Complex decision boundaries** — e.g. a price cliff at a certain age threshold
 
-These limitations motivate **Chapter 2: Activation Functions** — where non-linearity is introduced.
+These limitations motivate **Chapter 2: Activation Functions** — where non-linearity is introduced, allowing models to learn curves instead of only straight lines.
 
 ---
 
