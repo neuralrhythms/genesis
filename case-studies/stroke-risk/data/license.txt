@@ -1,0 +1,9 @@
+Dataset: Stroke Risk Prediction Dataset v2
+Source: https://www.kaggle.com/datasets/mahatiratakandh/stroke-risk-prediction-dataset
+Author: Mahati Ratakondh
+License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+
+This dataset is designed for predicting stroke risk using symptoms, demographics,
+and medical literature-inspired risk modeling.
+
+Samples: 35,000 | Features: 16 | Targets: 2 (Binary + Regression)

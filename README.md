@@ -99,6 +99,7 @@ Quick setup in VS Code:
 | # | Title | Website | Code |
 |---|-------|---------|------|
 | 01 | Car Price Prediction | [Read →](https://ai.neuralrhythms.in/case-studies/car-prices/) | `case-studies/car-prices/` |
+| 02 | Stroke Risk Prediction | [Read →](https://ai.neuralrhythms.in/case-studies/stroke-risk/) | `case-studies/stroke-risk/` |
 
 ---
 
